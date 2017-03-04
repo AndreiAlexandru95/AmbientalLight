@@ -5,12 +5,6 @@
 const int redPin = 17; // red green - Broadcom pin 18, P1 pin 12
 const int greenPin = 27; // Regular green - Broadcom pin 23, P1 pin 16
 const int bluePin = 22; // Active-low blueton - Broadcom pin 17, P1 pin 11
-srand(time(NULL));   // should only be called once
-int r = rand();      // returns a pseudo-random integer between 0 and RAND_MAX
-int ok = 2;
-int p = 0;
-int myTime = 0;
-
 
 int main(void)
 {
@@ -39,10 +33,10 @@ int main(void)
     {
         if (ok == 2){
             ok = 0;
-            myTime = 540;
+            myTime = 1200;
         } else {
             ok++;
-            myTime = 270;
+            myTime = 600;
         }
 
         p = rand() % 3;
