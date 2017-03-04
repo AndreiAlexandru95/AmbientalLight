@@ -3,7 +3,7 @@
 
 // Pin number declarations. We're using the Broadcom chip pin numbers.
 const int pwmPin = 17; // PWM LED - Broadcom pin 18, P1 pin 12
-const int ledPin = 21; // Regular LED - Broadcom pin 23, P1 pin 16
+const int ledPin = 27; // Regular LED - Broadcom pin 23, P1 pin 16
 const int butPin = 22; // Active-low button - Broadcom pin 17, P1 pin 11
 
 int main(void)
