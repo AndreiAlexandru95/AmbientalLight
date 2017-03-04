@@ -14,6 +14,12 @@ int myTime = 0;
 
 int main(void)
 {
+
+    srand(time(NULL));   // should only be called once
+    int ok = 2;
+    int p = 0;
+    int myTime = 0;
+
     // Setup stuff:
     wiringPiSetupGpio(); // Initialize wiringPi -- using Broadcom pin numbers
 
@@ -39,11 +45,11 @@ int main(void)
             myTime = 270;
         }
 
-        p = r % 3;
+        p = rand() % 3;
 
         if (p == 0){
 
-            p = r % 3;
+            p = rand() % 3;
             
             if(p == 0){
 
@@ -70,7 +76,7 @@ int main(void)
             }
         } else if (p == 1){
             
-            p = r % 3;
+            p = rand() % 3;
             
             if(p == 0){
 
@@ -98,7 +104,7 @@ int main(void)
 
         } else {
             
-            p = r % 3;
+            p = rand() % 3;
             
             if(p == 0){
 
