@@ -33,10 +33,10 @@ int main(void)
     {
         if (ok == 2){
             ok = 0;
-            myTime = 1200;
+            myTime = 800;
         } else {
             ok++;
-            myTime = 600;
+            myTime = 400;
         }
 
         p = rand() % 3;
