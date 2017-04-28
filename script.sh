@@ -117,5 +117,5 @@ echo "maxColor is $maxColor and its value is $maxValue"
 # ID = 5 : white
 # ID = 6 : black
 # ID = 7 : blue
-echo "$maxColor" > colorFile.txt
+echo -n "$maxColor" > /home/pi/AmbientalLight/LedBorg/colorFile.txt
 
