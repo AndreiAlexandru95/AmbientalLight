@@ -23,7 +23,7 @@ int main(void)
     digitalWrite(greenPin, LOW);
     digitalWrite(bluePin, LOW);
     
-
+    printf("Blinker is running! Press CTRL+C to quit.\n");
     printf("Blinker is running! Press CTRL+C to quit.\n");
 
     // delay(1000);
