@@ -6,6 +6,8 @@ const int redPin = 17; // red green - Broadcom pin 18, P1 pin 12
 const int greenPin = 27; // Regular green - Broadcom pin 23, P1 pin 16
 const int bluePin = 22; // Active-low blueton - Broadcom pin 17, P1 pin 11
 
+void getColor(void);
+
 int main(void)
 {
 
