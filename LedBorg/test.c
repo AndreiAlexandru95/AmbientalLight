@@ -23,13 +23,13 @@ int main(void)
     digitalWrite(greenPin, LOW);
     digitalWrite(bluePin, LOW);
 
-    delay(1000);
+    delay(30000);
     getColor();
 
     // Loop (while(1)):
     while(1)
     {
-        delay(30000);
+        delay(60000);
         getColor();    
 
     }
