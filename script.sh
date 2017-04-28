@@ -121,7 +121,7 @@ while true; do
 		# ID = 7 : blue
 		echo -n "$maxColor" > /home/pi/AmbientalLight/LedBorg/colorFile.txt
 	else
-		echo -n '$nodataID' > /home/pi/AmbientalLight/LedBorg/colorFile.txt
+		echo -n "$nodataID" > /home/pi/AmbientalLight/LedBorg/colorFile.txt
 	fi
 
 done
