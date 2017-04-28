@@ -48,55 +48,52 @@ int main(void)
 
 void getColor(void){
 
-    char colorChar;
     int color;
     FILE *colorFile;
     colorFile = fopen("colorFile.txt", "r");
     if (colorFile){
-        while((colorChar = getc(colorFile)) != EOF){
-            color = colorChar - '0';
-            printf("The color is: %d.\n", color);
-            switch(color){
-                case 0:{
-                    digitalWrite(redPin, HIGH);
-                    digitalWrite(bluePin, LOW);
-                    digitalWrite(greenPin, LOW);
-                }
-                case 1:{
-                    digitalWrite(redPin, LOW);
-                    digitalWrite(bluePin, LOW);
-                    digitalWrite(greenPin, HIGH);
-                }
-                case 2:{
-                    digitalWrite(redPin, HIGH);
-                    digitalWrite(bluePin, HIGH);
-                    digitalWrite(greenPin, LOW);
-                }
-                case 3:{
-                    digitalWrite(redPin, LOW);
-                    digitalWrite(bluePin, HIGH);
-                    digitalWrite(greenPin, HIGH);
-                }
-                case 4:{
-                    digitalWrite(redPin, HIGH);
-                    digitalWrite(bluePin, LOW);
-                    digitalWrite(greenPin, HIGH);
-                }
-                case 5:{
-                    digitalWrite(redPin, HIGH);
-                    digitalWrite(bluePin, HIGH);
-                    digitalWrite(greenPin, HIGH);
-                }
-                case 6:{
-                    digitalWrite(redPin, LOW);
-                    digitalWrite(bluePin, LOW);
-                    digitalWrite(greenPin, LOW);
-                }
-                default:{
-                    digitalWrite(redPin, LOW);
-                    digitalWrite(bluePin, HIGH);
-                    digitalWrite(greenPin, LOW);
-                }
+        color = getc(colorFile);
+        printf("The color is: %c.\n", color);
+        switch(color){
+            case '0':{
+                digitalWrite(redPin, HIGH);
+                digitalWrite(bluePin, LOW);
+                digitalWrite(greenPin, LOW);
+            }
+            case '1':{
+                digitalWrite(redPin, LOW);
+                digitalWrite(bluePin, LOW);
+                digitalWrite(greenPin, HIGH);
+            }
+            case '2':{
+                digitalWrite(redPin, HIGH);
+                digitalWrite(bluePin, HIGH);
+                digitalWrite(greenPin, LOW);
+            }
+            case '3':{
+                digitalWrite(redPin, LOW);
+                digitalWrite(bluePin, HIGH);
+                digitalWrite(greenPin, HIGH);
+            }
+            case '4':{
+                digitalWrite(redPin, HIGH);
+                digitalWrite(bluePin, LOW);
+                digitalWrite(greenPin, HIGH);
+            }
+            case '5':{
+                digitalWrite(redPin, HIGH);
+                digitalWrite(bluePin, HIGH);
+                digitalWrite(greenPin, HIGH);
+            }
+            case '6':{
+                digitalWrite(redPin, LOW);
+                digitalWrite(bluePin, LOW);
+                digitalWrite(greenPin, LOW);
+            }
+            default:{
+                digitalWrite(redPin, LOW);
+                digitalWrite(bluePin, HIGH);
+                digitalWrite(greenPin, LOW);
             }
         }
         fclose(colorFile);
