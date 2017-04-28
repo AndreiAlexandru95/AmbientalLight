@@ -26,7 +26,7 @@ int main(void)
     printf("Blinker is running! Press CTRL+C to quit.\n");
     printf("Blinker is running! Press CTRL+C to quit.\n");
 
-    // delay(1000);
+    delay(1000);
     printf("Blinker is running! Press CTRL+C to quit.\n");
     getColor();
 
@@ -54,9 +54,7 @@ void getColor(void){
 
     int color;
     FILE *colorFile;
-    printf("Blinker is running! Press CTRL+C to quit.\n");
     colorFile = fopen("colorFile.txt", "r");
-    printf("Blinker is running! Press CTRL+C to quit.\n");
     if (colorFile){
         while((color = getc(colorFile)) != EOF){
             printf("Blinker is running! Press CTRL+C to quit.\n");
