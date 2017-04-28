@@ -55,7 +55,7 @@ void getColor(void){
     if (colorFile){
         while((colorChar = getc(colorFile)) != EOF){
             color = colorChar - '0';
-            printf("The color is: %d", color);
+            printf("The color is: %d.\n", color);
             switch(color){
                 case 0:{
                     digitalWrite(redPin, HIGH);
