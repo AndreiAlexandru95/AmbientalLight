@@ -100,7 +100,7 @@ Array=($redInt $greenInt $purpleInt $cyanInt $yellowInt $whiteInt $blackInt)
 for index in ${!Array[*]}
 do
 	echo "ColorNo: $index has ${Array[$index]} size"
-	if [ "${Array[$index]}" -gt "maxValue" ]; then
+	if [ "${Array[$index]}" -gt "$maxValue" ]; then
 		maxValue=${Array[$index]};
 		maxColor=$index;
 	fi
