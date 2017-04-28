@@ -90,12 +90,13 @@ echo "yellowInt = $yellowInt"
 echo "whiteInt = $whiteInt"
 echo "blackInt = $blackInt"
 
-maxValue=blueInt
+maxValue=$blueInt
 
 echo "maxValue = $maxValue"
 
-Array=(redInt greenInt purpleInt cyanInt yellowInt whiteInt blackInt)
+Array=($redInt $greenInt $purpleInt $cyanInt $yellowInt $whiteInt $blackInt)
 
 for index in ${!Array[*]}
 do
 	echo "ColorNo: $index has ${Array[$index]} size"
+done
