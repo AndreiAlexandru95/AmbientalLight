@@ -96,7 +96,7 @@ maxColor=7
 echo "maxValue = $maxValue"
 
 Array=($redInt $greenInt $purpleInt $cyanInt $yellowInt $whiteInt $blackInt)
-
+# See what color should be lighten depending on the size of its file
 for index in ${!Array[*]}
 do
 	echo "ColorNo: $index has ${Array[$index]} size"
@@ -107,4 +107,15 @@ do
 done
 
 echo "maxColor is $maxColor and its value is $maxValue"
+
+# Send the Color id to colorFile for further use
+# ID = 0 : red
+# ID = 1 : green
+# ID = 2 : purple
+# ID = 3 : cyan
+# ID = 4 : yellow
+# ID = 5 : white
+# ID = 6 : black
+# ID = 7 : blue
+echo "$maxColor" > colorFile.txt
 
