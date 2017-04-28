@@ -27,7 +27,7 @@ int main(void)
     printf("Blinker is running! Press CTRL+C to quit.\n");
 
     // delay(1000);
-    printf("ok");
+    printf("Blinker is running! Press CTRL+C to quit.\n");
     getColor();
 
     // Loop (while(1)):
