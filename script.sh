@@ -3,117 +3,6 @@
 
 clear
 
-blueInt=0
-redInt=0
-greenInt=0
-purpleInt=0
-cyanInt=0
-yellowInt=0
-whiteInt=0
-blackInt=0
-temp=0
-
-# Get packets that contain the dictionary words
-sudo timeout 10 ngrep -X -q -d wlan2 port 80 -O test.dump
-
-
-# Get the packets for BLUE color - fear
-sudo ngrep -xX -q '0x66656172' -I test.dump -O blue.dump
-
-blueInt=`du -k "blue.dump" | cut -f1`
-
-
-# Get the packets for RED color - love
-sudo ngrep -xX -q '0x6c6f7665' -I test.dump -O red.dump
-
-redInt=`du -k "red.dump" | cut -f1`
-
-
-# Get the packets for GREEN color -family|child|parent
-sudo ngrep -xX -q '0x66616d696c79' -I test.dump -O green.dump
-
-temp=`du -k "green.dump" | cut -f1`
-greenInt=$((greenInt + temp))
-
-#sudo ngrep -xX -q '0x6368696c64' -I test.dump -O green.dump
-
-#temp=`du -k "green.dump" | cut -f1`
-#greenInt=$((greenInt + temp))
-
-#sudo ngrep -xX -q '0x706172656e74' -I test.dump -O green.dump
-
-#temp=`du -k "green.dump" | cut -f1`
-#greenInt=$((greenInt + temp))
-
-
-# Get the packets for PURPLE color - sad
-sudo ngrep -xX -q '0x736164' -I test.dump -O purple.dump
-
-purpleInt=`du -k "purple.dump" | cut -f1`
-
-
-# Get the packets for CYAN color - gam = gaming/game
-sudo ngrep -xX -q '0x67616d' -I test.dump -O cyan.dump
-
-cyanInt=`du -k "cyan.dump" | cut -f1`
-
-
-# Get the packets for YELLOW color - happy|joy
-sudo ngrep -xX -q '0x6861707079' -I test.dump -O yellow.dump
-
-temp=`du -k "yellow.dump" | cut -f1`
-yellowInt=$((greenInt + temp))
-
-#sudo ngrep -xX -q '0x6a6f79' -I test.dump -O yellow.dump
-
-#temp=`du -k "yellow.dump" | cut -f1`
-#yellowInt=$((greenInt + temp))
-
-
-# Get the packets for WHITE color - news
-sudo ngrep -xX -q '0x6e657773' -I test.dump -O white.dump
-
-whiteInt=`du -k "white.dump" | cut -f1`
-
-
-# Get the packets for NO color - tragi
-sudo ngrep -xX -q '0x7472616769' -I test.dump -O black.dump
-
-blackInt=`du -k "black.dump" | cut -f1`
-
-echo "blueInt = $blueInt"
-echo "redInt = $redInt"
-echo "greenInt = $greenInt"
-echo "purpleInt = $purpleInt"
-echo "cyanInt = $cyanInt"
-echo "yellowInt = $yellowInt"
-echo "whiteInt = $whiteInt"
-echo "blackInt = $blackInt"
-
-maxValue=$blueInt
-maxColor=7
-
-Array=($redInt $greenInt $purpleInt $cyanInt $yellowInt $whiteInt $blackInt)
-# See what color should be lighten depending on the size of its file
-for index in ${!Array[*]}
-do
-	if [ "${Array[$index]}" -gt "$maxValue" ]; then
-		maxValue=${Array[$index]};
-		maxColor=$index;
-	fi
-done
-
-# Send the Color id to colorFile for further use
-# ID = 0 : red
-# ID = 1 : green
-# ID = 2 : purple
-# ID = 3 : cyan
-# ID = 4 : yellow
-# ID = 5 : white
-# ID = 6 : black
-# ID = 7 : blue
-echo -n "$maxColor" > /home/pi/AmbientalLight/LedBorg/colorFile.txt
-
 while true; do
 
 	blueInt=0
@@ -125,105 +14,114 @@ while true; do
 	whiteInt=0
 	blackInt=0
 	temp=0
+	treshold=10
+	nodataID=6
 
 	# Get packets that contain the dictionary words
 	sudo timeout 60 ngrep -X -q -d wlan2 port 80 -O test.dump
 
+	temp=`du -k "test.dump" | cut -f1`
 
-	# Get the packets for BLUE color - fear
-	sudo ngrep -xX -q '0x66656172' -I test.dump -O blue.dump
+	if [ "$temp" -gt "$treshold" ]; then
 
-	blueInt=`du -k "blue.dump" | cut -f1`
+		# Get the packets for BLUE color - fear
+		sudo ngrep -xX -q '0x66656172' -I test.dump -O blue.dump
 
-
-	# Get the packets for RED color - love
-	sudo ngrep -xX -q '0x6c6f7665' -I test.dump -O red.dump
-
-	redInt=`du -k "red.dump" | cut -f1`
+		blueInt=`du -k "blue.dump" | cut -f1`
 
 
-	# Get the packets for GREEN color -family|child|parent
-	sudo ngrep -xX -q '0x66616d696c79' -I test.dump -O green.dump
+		# Get the packets for RED color - love
+		sudo ngrep -xX -q '0x6c6f7665' -I test.dump -O red.dump
 
-	temp=`du -k "green.dump" | cut -f1`
-	greenInt=$((greenInt + temp))
-
-	#sudo ngrep -xX -q '0x6368696c64' -I test.dump -O green.dump
-
-	#temp=`du -k "green.dump" | cut -f1`
-	#greenInt=$((greenInt + temp))
-
-	#sudo ngrep -xX -q '0x706172656e74' -I test.dump -O green.dump
-
-	#temp=`du -k "green.dump" | cut -f1`
-	#greenInt=$((greenInt + temp))
+		redInt=`du -k "red.dump" | cut -f1`
 
 
-	# Get the packets for PURPLE color - sad
-	sudo ngrep -xX -q '0x736164' -I test.dump -O purple.dump
+		# Get the packets for GREEN color -family|child|parent
+		sudo ngrep -xX -q '0x66616d696c79' -I test.dump -O green.dump
 
-	purpleInt=`du -k "purple.dump" | cut -f1`
+		temp=`du -k "green.dump" | cut -f1`
+		greenInt=$((greenInt + temp))
 
+		#sudo ngrep -xX -q '0x6368696c64' -I test.dump -O green.dump
 
-	# Get the packets for CYAN color - gam = gaming/game
-	sudo ngrep -xX -q '0x67616d' -I test.dump -O cyan.dump
+		#temp=`du -k "green.dump" | cut -f1`
+		#greenInt=$((greenInt + temp))
 
-	cyanInt=`du -k "cyan.dump" | cut -f1`
+		#sudo ngrep -xX -q '0x706172656e74' -I test.dump -O green.dump
 
-
-	# Get the packets for YELLOW color - happy|joy
-	sudo ngrep -xX -q '0x6861707079' -I test.dump -O yellow.dump
-
-	temp=`du -k "yellow.dump" | cut -f1`
-	yellowInt=$((greenInt + temp))
-
-	#sudo ngrep -xX -q '0x6a6f79' -I test.dump -O yellow.dump
-
-	#temp=`du -k "yellow.dump" | cut -f1`
-	#yellowInt=$((greenInt + temp))
+		#temp=`du -k "green.dump" | cut -f1`
+		#greenInt=$((greenInt + temp))
 
 
-	# Get the packets for WHITE color - news
-	sudo ngrep -xX -q '0x6e657773' -I test.dump -O white.dump
+		# Get the packets for PURPLE color - sad
+		sudo ngrep -xX -q '0x736164' -I test.dump -O purple.dump
 
-	whiteInt=`du -k "white.dump" | cut -f1`
+		purpleInt=`du -k "purple.dump" | cut -f1`
 
 
-	# Get the packets for NO color - tragi
-	sudo ngrep -xX -q '0x7472616769' -I test.dump -O black.dump
+		# Get the packets for CYAN color - gam = gaming/game
+		sudo ngrep -xX -q '0x67616d' -I test.dump -O cyan.dump
 
-	blackInt=`du -k "black.dump" | cut -f1`
+		cyanInt=`du -k "cyan.dump" | cut -f1`
 
-	echo "blueInt = $blueInt"
-	echo "redInt = $redInt"
-	echo "greenInt = $greenInt"
-	echo "purpleInt = $purpleInt"
-	echo "cyanInt = $cyanInt"
-	echo "yellowInt = $yellowInt"
-	echo "whiteInt = $whiteInt"
-	echo "blackInt = $blackInt"
 
-	maxValue=$blueInt
-	maxColor=7
+		# Get the packets for YELLOW color - happy|joy
+		sudo ngrep -xX -q '0x6861707079' -I test.dump -O yellow.dump
 
-	Array=($redInt $greenInt $purpleInt $cyanInt $yellowInt $whiteInt $blackInt)
-	# See what color should be lighten depending on the size of its file
-	for index in ${!Array[*]}
-	do
-		if [ "${Array[$index]}" -gt "$maxValue" ]; then
-			maxValue=${Array[$index]};
-			maxColor=$index;
-		fi
-	done
+		temp=`du -k "yellow.dump" | cut -f1`
+		yellowInt=$((greenInt + temp))
 
-	# Send the Color id to colorFile for further use
-	# ID = 0 : red
-	# ID = 1 : green
-	# ID = 2 : purple
-	# ID = 3 : cyan
-	# ID = 4 : yellow
-	# ID = 5 : white
-	# ID = 6 : black
-	# ID = 7 : blue
-	echo -n "$maxColor" > /home/pi/AmbientalLight/LedBorg/colorFile.txt
+		#sudo ngrep -xX -q '0x6a6f79' -I test.dump -O yellow.dump
+
+		#temp=`du -k "yellow.dump" | cut -f1`
+		#yellowInt=$((greenInt + temp))
+
+
+		# Get the packets for WHITE color - news
+		sudo ngrep -xX -q '0x6e657773' -I test.dump -O white.dump
+
+		whiteInt=`du -k "white.dump" | cut -f1`
+
+
+		# Get the packets for NO color - tragi
+		sudo ngrep -xX -q '0x7472616769' -I test.dump -O black.dump
+
+		blackInt=`du -k "black.dump" | cut -f1`
+
+		echo "blueInt = $blueInt"
+		echo "redInt = $redInt"
+		echo "greenInt = $greenInt"
+		echo "purpleInt = $purpleInt"
+		echo "cyanInt = $cyanInt"
+		echo "yellowInt = $yellowInt"
+		echo "whiteInt = $whiteInt"
+		echo "blackInt = $blackInt"
+
+		maxValue=$blueInt
+		maxColor=7
+
+		Array=($redInt $greenInt $purpleInt $cyanInt $yellowInt $whiteInt $blackInt)
+		# See what color should be lighten depending on the size of its file
+		for index in ${!Array[*]}
+		do
+			if [ "${Array[$index]}" -gt "$maxValue" ]; then
+				maxValue=${Array[$index]};
+				maxColor=$index;
+			fi
+		done
+
+		# Send the Color id to colorFile for further use
+		# ID = 0 : red
+		# ID = 1 : green
+		# ID = 2 : purple
+		# ID = 3 : cyan
+		# ID = 4 : yellow
+		# ID = 5 : white
+		# ID = 6 : black
+		# ID = 7 : blue
+		echo -n "$maxColor" > /home/pi/AmbientalLight/LedBorg/colorFile.txt
+	else
+		echo -n '$nodataID' > /home/pi/AmbientalLight/LedBorg/colorFile.txt
+	fi
+
 done
