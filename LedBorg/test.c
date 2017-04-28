@@ -1,6 +1,6 @@
 #include <stdio.h>    // Used for printf() statements
 #include <wiringPi.h> // Include WiringPi library!
-#include <unist.h>
+#include <unistd.h>
 // Pin number declarations. We're using the Broadcom chip pin numbers.
 const int redPin = 17; // red green - Broadcom pin 18, P1 pin 12
 const int greenPin = 27; // Regular green - Broadcom pin 23, P1 pin 16
