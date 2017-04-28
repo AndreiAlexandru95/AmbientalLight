@@ -24,16 +24,38 @@ while true; do
 
 	if [ "$temp" -gt "$treshold" ]; then
 
-		# Get the packets for BLUE color - fear
+		# Get the packets for BLUE color - fear|terror|horror
 		sudo ngrep -xX -q '0x66656172' -I test.dump -O blue.dump
 
-		blueInt=`du -k "blue.dump" | cut -f1`
+		temp=`du -k "blue.dump" | cut -f1`
+		blueInt=$((blueInt + temp))
+
+		sudo ngrep -xX -q '0x746572726f72' -I test.dump -O blue.dump
+
+		temp=`du -k "blue.dump" | cut -f1`
+		blueInt=$((blueInt + temp))
+
+		sudo ngrep -xX -q '0x686f72726f72' -I test.dump -O blue.dump
+
+		temp=`du -k "blue.dump" | cut -f1`
+		blueInt=$((blueInt + temp))
 
 
-		# Get the packets for RED color - love
+		# Get the packets for RED color - love|sex|sweet
 		sudo ngrep -xX -q '0x6c6f7665' -I test.dump -O red.dump
 
-		redInt=`du -k "red.dump" | cut -f1`
+		temp=`du -k "red.dump" | cut -f1`
+		redInt=$((redInt + temp))
+
+		sudo ngrep -xX -q '0x736578' -I test.dump -O red.dump
+
+		temp=`du -k "red.dump" | cut -f1`
+		redInt=$((redInt + temp))
+
+		sudo ngrep -xX -q '0x7377656574' -I test.dump -O red.dump
+
+		temp=`du -k "red.dump" | cut -f1`
+		redInt=$((redInt + temp))
 
 
 		# Get the packets for GREEN color -family|child|parent
@@ -42,51 +64,100 @@ while true; do
 		temp=`du -k "green.dump" | cut -f1`
 		greenInt=$((greenInt + temp))
 
-		#sudo ngrep -xX -q '0x6368696c64' -I test.dump -O green.dump
+		sudo ngrep -xX -q '0x6368696c64' -I test.dump -O green.dump
 
-		#temp=`du -k "green.dump" | cut -f1`
-		#greenInt=$((greenInt + temp))
+		temp=`du -k "green.dump" | cut -f1`
+		greenInt=$((greenInt + temp))
 
-		#sudo ngrep -xX -q '0x706172656e74' -I test.dump -O green.dump
+		sudo ngrep -xX -q '0x706172656e74' -I test.dump -O green.dump
 
-		#temp=`du -k "green.dump" | cut -f1`
-		#greenInt=$((greenInt + temp))
+		temp=`du -k "green.dump" | cut -f1`
+		greenInt=$((greenInt + temp))
 
 
-		# Get the packets for PURPLE color - sad
+		# Get the packets for PURPLE color - sad|depress|cry
 		sudo ngrep -xX -q '0x736164' -I test.dump -O purple.dump
 
-		purpleInt=`du -k "purple.dump" | cut -f1`
+		temp=`du -k "purple.dump" | cut -f1`
+		purpleInt=$((purpleInt + temp))
+
+		sudo ngrep -xX -q '0x64657072657373' -I test.dump -O purple.dump
+
+		temp=`du -k "purple.dump" | cut -f1`
+		purpleInt=$((purpleInt + temp))
+
+		sudo ngrep -xX -q '0x637279' -I test.dump -O purple.dump
+
+		temp=`du -k "purple.dump" | cut -f1`
+		purpleInt=$((purpleInt + temp))
 
 
-		# Get the packets for CYAN color - gam = gaming/game
-		sudo ngrep -xX -q '0x67616d' -I test.dump -O cyan.dump
+		# Get the packets for CYAN color - peace|relax|zen
+		sudo ngrep -xX -q '0x7065616365' -I test.dump -O cyan.dump
 
-		cyanInt=`du -k "cyan.dump" | cut -f1`
+		temp=`du -k "cyan.dump" | cut -f1`
+		cyanInt=$((cyanInt + temp))
+
+		sudo ngrep -xX -q '0x72656c6178' -I test.dump -O cyan.dump
+
+		temp=`du -k "cyan.dump" | cut -f1`
+		cyanInt=$((cyanInt + temp))
+
+		sudo ngrep -xX -q '0x7a656e' -I test.dump -O cyan.dump
+
+		temp=`du -k "cyan.dump" | cut -f1`
+		cyanInt=$((cyanInt + temp))
 
 
-		# Get the packets for YELLOW color - happy|joy
+		# Get the packets for YELLOW color - happy|joy|cheer
 		sudo ngrep -xX -q '0x6861707079' -I test.dump -O yellow.dump
 
 		temp=`du -k "yellow.dump" | cut -f1`
-		yellowInt=$((greenInt + temp))
+		yellowInt=$((yellowInt + temp))
 
-		#sudo ngrep -xX -q '0x6a6f79' -I test.dump -O yellow.dump
+		sudo ngrep -xX -q '0x6a6f79' -I test.dump -O yellow.dump
 
-		#temp=`du -k "yellow.dump" | cut -f1`
-		#yellowInt=$((greenInt + temp))
+		temp=`du -k "yellow.dump" | cut -f1`
+		yellowInt=$((yellowInt + temp))
+
+		sudo ngrep -xX -q '0x6368656572' -I test.dump -O yellow.dump
+
+		temp=`du -k "yellow.dump" | cut -f1`
+		yellowInt=$((yellowInt + temp))
 
 
-		# Get the packets for WHITE color - news
+		# Get the packets for WHITE color - news|politic|science
 		sudo ngrep -xX -q '0x6e657773' -I test.dump -O white.dump
 
-		whiteInt=`du -k "white.dump" | cut -f1`
+		temp=`du -k "white.dump" | cut -f1`
+		whiteInt=$((whiteInt + temp))
+
+		sudo ngrep -xX -q '0x706f6c69746963' -I test.dump -O white.dump
+
+		temp=`du -k "white.dump" | cut -f1`
+		whiteInt=$((whiteInt + temp))
+
+		sudo ngrep -xX -q '0x736369656e6365' -I test.dump -O white.dump
+
+		temp=`du -k "white.dump" | cut -f1`
+		whiteInt=$((whiteInt + temp))
 
 
-		# Get the packets for NO color - tragi
+		# Get the packets for NO color - tragi|disaster|terror
 		sudo ngrep -xX -q '0x7472616769' -I test.dump -O black.dump
 
-		blackInt=`du -k "black.dump" | cut -f1`
+		temp=`du -k "black.dump" | cut -f1`
+		blackInt=$((blackInt + temp))
+
+		sudo ngrep -xX -q '0x6469736173746572' -I test.dump -O black.dump
+
+		temp=`du -k "black.dump" | cut -f1`
+		blackInt=$((blackInt + temp))
+
+		sudo ngrep -xX -q '0x746572726f72' -I test.dump -O black.dump
+
+		temp=`du -k "black.dump" | cut -f1`
+		blackInt=$((blackInt + temp))
 
 		echo "blueInt = $blueInt"
 		echo "redInt = $redInt"
