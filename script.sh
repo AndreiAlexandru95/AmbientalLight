@@ -3,7 +3,7 @@
 clear
 
 # Get 200 packets that contain the dictionary words
-sudo ngrep -i -c 200 -q -w '(love|family|child|parent|fear|happy|news|tragic|sad|gam|joy)' -d wlan2 port 80 -O test.dump
+sudo ngrep -i -c 10 -q -w '(love|family|child|parent|fear|happy|news|tragic|sad|gam|joy)' -d wlan2 port 80 -O test.dump
 
 # Get the packets for BLUE color - fear
 sudo ngrep -i -q -w 'fear' -I test.dump -O blue.dump
