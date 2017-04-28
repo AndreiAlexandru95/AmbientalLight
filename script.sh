@@ -89,3 +89,13 @@ echo "cyanInt = $cyanInt"
 echo "yellowInt = $yellowInt"
 echo "whiteInt = $whiteInt"
 echo "blackInt = $blackInt"
+
+maxValue=blueInt
+
+echo "maxValue = $maxValue"
+
+Array=(redInt greenInt purpleInt cyanInt yellowInt whiteInt blackInt)
+
+for index in ${!Array[*]}
+do
+	echo "ColorNo: $index has ${Array[$index]} size"
