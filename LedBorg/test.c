@@ -22,12 +22,8 @@ int main(void)
     digitalWrite(redPin, LOW);
     digitalWrite(greenPin, LOW);
     digitalWrite(bluePin, LOW);
-    
-    printf("Blinker is running! Press CTRL+C to quit.\n");
-    printf("Blinker is running! Press CTRL+C to quit.\n");
 
     delay(1000);
-    printf("Blinker is running! Press CTRL+C to quit.\n");
     getColor();
 
     // Loop (while(1)):
@@ -52,12 +48,14 @@ int main(void)
 
 void getColor(void){
 
+    int colorChar;
     int color;
     FILE *colorFile;
     colorFile = fopen("colorFile.txt", "r");
     if (colorFile){
-        while((color = getc(colorFile)) != EOF){
-            printf("Blinker is running! Press CTRL+C to quit.\n");
+        while((colorChar = getc(colorFile)) != EOF){
+            color = colorChar - '0';
+            printf("The color is: %d", color);
             switch(color){
                 case 0:{
                     digitalWrite(redPin, HIGH);
