@@ -53,9 +53,10 @@ void getColor(void){
     int color;
     FILE *colorFile;
     colorFile = fopen("../colorFile.txt", "r");
+    printf(colorFile);
     if (colorFile){
         while((color = getc(colorFile)) != EOF){
-
+            printf("The color read from the file is: %d", color);
             switch(color){
                 case 0:{
                     digitalWrite(redPin, HIGH);
