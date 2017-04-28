@@ -52,7 +52,7 @@ void getColor(void){
 
     int color;
     FILE *colorFile;
-    colorFile = fopen("../colorFile.txt", "r");
+    colorFile = fopen("colorFile.txt", "r");
     printf(colorFile);
     if (colorFile){
         while((color = getc(colorFile)) != EOF){
