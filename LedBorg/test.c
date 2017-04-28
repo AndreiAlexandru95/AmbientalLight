@@ -52,6 +52,7 @@ void getColor(void){
 
     int color;
     FILE *colorFile;
+    printf("ok");
     colorFile = fopen("colorFile.txt", "r");
     printf("ok");
     if (colorFile){
