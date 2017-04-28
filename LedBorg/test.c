@@ -48,7 +48,7 @@ int main(void)
 
 void getColor(void){
 
-    int colorChar;
+    char colorChar;
     int color;
     FILE *colorFile;
     colorFile = fopen("colorFile.txt", "r");
