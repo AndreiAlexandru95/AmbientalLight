@@ -91,12 +91,21 @@ echo "whiteInt = $whiteInt"
 echo "blackInt = $blackInt"
 
 maxValue=$blueInt
+maxColor=7
 
 echo "maxValue = $maxValue"
 
-Array=($redInt $greenInt $purpleInt $cyanInt $yellowInt $whiteInt $blackInt)
+declare -A Array=( ["0"]="$blueInt" ["1"]="$redInt" ["2"]="$greenInt" ["3"]="$purpleInt" ["4"]="$cyanInt" ["5"]="$yellowInt" ["6"]="$whiteInt" ["7"]="$blackInt")
 
 for index in ${!Array[*]}
 do
 	echo "ColorNo: $index has ${Array[$index]} size"
+done
+
+IFS=$'\n' sorted=($(sort <<<"${Array[*]}"))
+unset IFS
+
+for index in ${!sorted[*]}
+do
+	echo "ColorNo: $index has ${sorted[$index]} size"
 done
