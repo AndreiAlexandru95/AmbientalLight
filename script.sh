@@ -35,15 +35,15 @@ sudo ngrep -xX -q '0x66616d696c79' -I test.dump -O green.dump
 temp=`du -k "green.dump" | cut -f1`
 greenInt=$((greenInt + temp))
 
-sudo ngrep -xX -q '0x6368696c64' -I test.dump -O green.dump
+#sudo ngrep -xX -q '0x6368696c64' -I test.dump -O green.dump
 
-temp=`du -k "green.dump" | cut -f1`
-greenInt=$((greenInt + temp))
+#temp=`du -k "green.dump" | cut -f1`
+#greenInt=$((greenInt + temp))
 
-sudo ngrep -xX -q '0x706172656e74' -I test.dump -O green.dump
+#sudo ngrep -xX -q '0x706172656e74' -I test.dump -O green.dump
 
-temp=`du -k "green.dump" | cut -f1`
-greenInt=$((greenInt + temp))
+#temp=`du -k "green.dump" | cut -f1`
+#greenInt=$((greenInt + temp))
 
 
 # Get the packets for PURPLE color - sad
@@ -64,10 +64,10 @@ sudo ngrep -xX -q '0x6861707079' -I test.dump -O yellow.dump
 temp=`du -k "yellow.dump" | cut -f1`
 yellowInt=$((greenInt + temp))
 
-sudo ngrep -xX -q '0x6a6f79' -I test.dump -O yellow.dump
+#sudo ngrep -xX -q '0x6a6f79' -I test.dump -O yellow.dump
 
-temp=`du -k "yellow.dump" | cut -f1`
-yellowInt=$((greenInt + temp))
+#temp=`du -k "yellow.dump" | cut -f1`
+#yellowInt=$((greenInt + temp))
 
 
 # Get the packets for WHITE color - news
@@ -116,6 +116,16 @@ echo -n "$maxColor" > /home/pi/AmbientalLight/LedBorg/colorFile.txt
 
 while true; do
 
+	blueInt=0
+	redInt=0
+	greenInt=0
+	purpleInt=0
+	cyanInt=0
+	yellowInt=0
+	whiteInt=0
+	blackInt=0
+	temp=0
+
 	# Get packets that contain the dictionary words
 	sudo timeout 60 ngrep -X -q -d wlan2 port 80 -O test.dump
 
@@ -138,15 +148,15 @@ while true; do
 	temp=`du -k "green.dump" | cut -f1`
 	greenInt=$((greenInt + temp))
 
-	sudo ngrep -xX -q '0x6368696c64' -I test.dump -O green.dump
+	#sudo ngrep -xX -q '0x6368696c64' -I test.dump -O green.dump
 
-	temp=`du -k "green.dump" | cut -f1`
-	greenInt=$((greenInt + temp))
+	#temp=`du -k "green.dump" | cut -f1`
+	#greenInt=$((greenInt + temp))
 
-	sudo ngrep -xX -q '0x706172656e74' -I test.dump -O green.dump
+	#sudo ngrep -xX -q '0x706172656e74' -I test.dump -O green.dump
 
-	temp=`du -k "green.dump" | cut -f1`
-	greenInt=$((greenInt + temp))
+	#temp=`du -k "green.dump" | cut -f1`
+	#greenInt=$((greenInt + temp))
 
 
 	# Get the packets for PURPLE color - sad
@@ -167,10 +177,10 @@ while true; do
 	temp=`du -k "yellow.dump" | cut -f1`
 	yellowInt=$((greenInt + temp))
 
-	sudo ngrep -xX -q '0x6a6f79' -I test.dump -O yellow.dump
+	#sudo ngrep -xX -q '0x6a6f79' -I test.dump -O yellow.dump
 
-	temp=`du -k "yellow.dump" | cut -f1`
-	yellowInt=$((greenInt + temp))
+	#temp=`du -k "yellow.dump" | cut -f1`
+	#yellowInt=$((greenInt + temp))
 
 
 	# Get the packets for WHITE color - news
