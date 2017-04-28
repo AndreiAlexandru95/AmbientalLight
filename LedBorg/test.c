@@ -10,9 +10,6 @@ int main(void)
 {
 
     srand(time(NULL));   // should only be called once
-    int ok = 2;
-    int p = 0;
-    int myTime = 0;
 
     // Setup stuff:
     wiringPiSetupGpio(); // Initialize wiringPi -- using Broadcom pin numbers
@@ -28,107 +25,81 @@ int main(void)
 
     printf("Blinker is running! Press CTRL+C to quit.\n");
 
+    sleep(10);
+    getColor();
+
     // Loop (while(1)):
     while(1)
     {
-        if (ok == 2){
-            ok = 0;
-            myTime = 800;
-        } else {
-            ok++;
-            myTime = 400;
-        }
-
-        p = rand() % 3;
-
-        if (p == 0){
-
-            p = rand() % 3;
-            
-            if(p == 0){
-
-                digitalWrite(redPin, HIGH);
-                delay(myTime);
-                digitalWrite(redPin, LOW);
-
-            } else if (p == 1 ){
-
-                digitalWrite(greenPin, HIGH);
-                digitalWrite(redPin, HIGH);
-                delay(myTime);
-                digitalWrite(redPin, LOW);
-                digitalWrite(greenPin, LOW);
-
-            } else {
-
-                digitalWrite(bluePin, HIGH);
-                digitalWrite(redPin, HIGH);
-                delay(myTime);
-                digitalWrite(bluePin, LOW);
-                digitalWrite(redPin, LOW);
-            
-            }
-        } else if (p == 1){
-            
-            p = rand() % 3;
-            
-            if(p == 0){
-
-                digitalWrite(greenPin, HIGH);
-                digitalWrite(redPin, HIGH);
-                delay(myTime);
-                digitalWrite(redPin, LOW);
-                digitalWrite(greenPin, LOW);
-
-            } else if (p == 1 ){
-
-                digitalWrite(greenPin, HIGH);
-                delay(myTime);
-                digitalWrite(greenPin, LOW);
-
-            } else {
-
-                digitalWrite(bluePin, HIGH);
-                digitalWrite(greenPin, HIGH);
-                delay(myTime);
-                digitalWrite(bluePin, LOW);
-                digitalWrite(greenPin, LOW);
-            
-            }
-
-        } else {
-            
-            p = rand() % 3;
-            
-            if(p == 0){
-
-                digitalWrite(bluePin, HIGH);
-                digitalWrite(redPin, HIGH);
-                delay(myTime);
-                digitalWrite(redPin, LOW);
-                digitalWrite(bluePin, LOW);
-
-            } else if (p == 1 ){
-
-                digitalWrite(bluePin, HIGH);
-                digitalWrite(greenPin, HIGH);
-                delay(myTime);
-                digitalWrite(greenPin, LOW);
-                digitalWrite(bluePin, LOW);
-
-            } else {
-
-                digitalWrite(bluePin, HIGH);
-                delay(myTime);
-                digitalWrite(bluePin, LOW);
-            
-            }
-
-        }
-        
+        sleep(30);
+        getColor();    
 
     }
 
     return 0;
+}
+
+// ColorID: 0   ColorName: Red
+// ColorID: 1   ColorName: Green
+// ColorID: 2   ColorName: Purple
+// ColorID: 3   ColorName: Cyan
+// ColorID: 4   ColorName: Yellow
+// ColorID: 5   ColorName: White
+// ColorID: 6   ColorName: Black
+// ColorID: 7   ColorName: Blue
+
+void getColor(void){
+
+    int color;
+    FILE *colorFile;
+    colorFile = fopen("../colorFile.txt", "r");
+    if (colorFile){
+        while((color = getc(colorFile)) != EOF){
+
+            switch(color){
+                case 0:{
+                    digitalWrite(redPin, HIGH);
+                    digitalWrite(bluePin, LOW);
+                    digitalWrite(greenPin, LOW);
+                }
+                case 1:{
+                    digitalWrite(redPin, LOW);
+                    digitalWrite(bluePin, LOW);
+                    digitalWrite(greenPin, HIGH);
+                }
+                case 2:{
+                    digitalWrite(redPin, HIGH);
+                    digitalWrite(bluePin, HIGH);
+                    digitalWrite(greenPin, LOW);
+                }
+                case 3:{
+                    digitalWrite(redPin, LOW);
+                    digitalWrite(bluePin, HIGH);
+                    digitalWrite(greenPin, HIGH);
+                }
+                case 4:{
+                    digitalWrite(redPin, HIGH);
+                    digitalWrite(bluePin, LOW);
+                    digitalWrite(greenPin, HIGH);
+                }
+                case 5:{
+                    digitalWrite(redPin, HIGH);
+                    digitalWrite(bluePin, HIGH);
+                    digitalWrite(greenPin, HIGH);
+                }
+                case 6:{
+                    digitalWrite(redPin, LOW);
+                    digitalWrite(bluePin, LOW);
+                    digitalWrite(greenPin, LOW);
+                }
+                default:{
+                    digitalWrite(redPin, LOW);
+                    digitalWrite(bluePin, HIGH);
+                    digitalWrite(greenPin, LOW);
+                }
+            }
+        }
+        fclose(colorFile);
+    }
 }
 
