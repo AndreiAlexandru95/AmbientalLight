@@ -59,41 +59,49 @@ void getColor(void){
                 digitalWrite(redPin, HIGH);
                 digitalWrite(bluePin, LOW);
                 digitalWrite(greenPin, LOW);
+                break;
             }
             case '1':{
                 digitalWrite(redPin, LOW);
                 digitalWrite(bluePin, LOW);
                 digitalWrite(greenPin, HIGH);
+                break;
             }
             case '2':{
                 digitalWrite(redPin, HIGH);
                 digitalWrite(bluePin, HIGH);
                 digitalWrite(greenPin, LOW);
+                break;
             }
             case '3':{
                 digitalWrite(redPin, LOW);
                 digitalWrite(bluePin, HIGH);
                 digitalWrite(greenPin, HIGH);
+                break;
             }
             case '4':{
                 digitalWrite(redPin, HIGH);
                 digitalWrite(bluePin, LOW);
                 digitalWrite(greenPin, HIGH);
+                break;
             }
             case '5':{
                 digitalWrite(redPin, HIGH);
                 digitalWrite(bluePin, HIGH);
                 digitalWrite(greenPin, HIGH);
+                break;
             }
             case '6':{
                 digitalWrite(redPin, LOW);
                 digitalWrite(bluePin, LOW);
                 digitalWrite(greenPin, LOW);
+                break;
             }
             default:{
                 digitalWrite(redPin, LOW);
                 digitalWrite(bluePin, HIGH);
                 digitalWrite(greenPin, LOW);
+                break;
             }
         }
         fclose(colorFile);
