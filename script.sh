@@ -95,17 +95,15 @@ maxColor=7
 
 echo "maxValue = $maxValue"
 
-declare -A Array=( ["0"]="$blueInt" ["1"]="$redInt" ["2"]="$greenInt" ["3"]="$purpleInt" ["4"]="$cyanInt" ["5"]="$yellowInt" ["6"]="$whiteInt" ["7"]="$blackInt")
+Array=($redInt $greenInt $purpleInt $cyanInt $yellowInt $whiteInt $blackInt)
 
 for index in ${!Array[*]}
 do
 	echo "ColorNo: $index has ${Array[$index]} size"
+	if [ "${Array[$index]}" -gt "maxValue" ]; then
+		maxValue=${Array[$index]};
+		maxColor=$index;
 done
 
-IFS=$'\n' sorted=($(sort <<<"${Array[*]}"))
-unset IFS
+echo "maxColor is $maxColor and its value is $maxValue"
 
-for index in ${!sorted[*]}
-do
-	echo "ColorNo: $index has ${sorted[$index]} size"
-done
