@@ -103,6 +103,7 @@ do
 	if [ "${Array[$index]}" -gt "maxValue" ]; then
 		maxValue=${Array[$index]};
 		maxColor=$index;
+	fi
 done
 
 echo "maxColor is $maxColor and its value is $maxValue"
