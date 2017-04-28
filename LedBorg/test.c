@@ -54,12 +54,12 @@ void getColor(void){
 
     int color;
     FILE *colorFile;
-    printf("ok");
+    printf("Blinker is running! Press CTRL+C to quit.\n");
     colorFile = fopen("colorFile.txt", "r");
-    printf("ok");
+    printf("Blinker is running! Press CTRL+C to quit.\n");
     if (colorFile){
         while((color = getc(colorFile)) != EOF){
-            printf("The color read from the file is: %d", color);
+            printf("Blinker is running! Press CTRL+C to quit.\n");
             switch(color){
                 case 0:{
                     digitalWrite(redPin, HIGH);
