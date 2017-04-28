@@ -26,6 +26,7 @@ int main(void)
     printf("Blinker is running! Press CTRL+C to quit.\n");
 
     sleep(10);
+    printf("ok");
     getColor();
 
     // Loop (while(1)):
